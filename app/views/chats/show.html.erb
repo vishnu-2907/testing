@@ -1,0 +1,19 @@
+<div class="container">
+	<p class="list-group-item">
+	  <strong>Title:</strong>
+	  <%= @chat.title %>
+	</p>
+
+	<p class="list-group-item">
+	  <strong>Message:</strong>
+	  <%= @chat.message %>
+	</p>
+
+	<p class="list-group-item">
+	  <strong>receiver:</strong>
+	  <%= @chat.receiver.name%>
+	</p>
+	<br>
+	<%= link_to 'Edit', edit_chat_path(@chat) ,class:"btn btn-primary"%> |
+	<%= link_to 'Back', chats_path ,class:"btn btn-default"%>
+</div>

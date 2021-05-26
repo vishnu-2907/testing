@@ -1,0 +1,40 @@
+<div class=" text-right">
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+</div>
+<div class="jumbotron text-center">
+  <h2>Welcome <%=current_user.name%> to the Chat application</h2>
+</div>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Message</th>
+        <th>Received/Sent</th>
+        <th>From</th>
+        <th>To</th>
+        <th colspan="3" class="text-center">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @chats.each do |chat| %>
+        <tr>
+          <td><%= chat.title %></td>
+          <td><%= chat.message %></td>
+          <td><%= chat.sender_id == current_user.id ? "Sent": "Received" %>
+          <td><%= chat.sender.name %></td>
+          <td><%= chat.receiver.name %></td>
+          <td><%= link_to 'Show', chat ,class:"btn-primary btn"%></td>
+          <td><%= link_to 'Edit', edit_chat_path(chat) ,class:"btn-info btn"%></td>
+          <td><%= link_to 'Destroy', chat,class:"btn-danger btn", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'New Chat', new_chat_path,class:"btn btn-primary" %>
